@@ -23,10 +23,10 @@ function App({}) {
   let location=useLocation();
   
   useEffect(()=>{
-    if(document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined"){
-       history.push("/loggedin")
-    }
-   
+    const decode = document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined"?JSON.parse(window.atob(document.cookie.split('.')[1])):0;
+    if(document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined" && decode.exp * 1000 > new Date().getTime()){
+          history.push("/loggedin")
+    } 
   },[])
 
   const history = useHistory();

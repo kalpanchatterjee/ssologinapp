@@ -14,11 +14,28 @@ function Cookie() {
     },[]);
     const sendGetRequest = async (id) => {
         try {
-            if(document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined") window.location.replace("https://"+id+"/"+document.cookie);
+            
+            const decode = document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined"?JSON.parse(window.atob(document.cookie.split('.')[1])):0;
+   
+            // console.log(JSON.parse(window.atob(document.cookie.split('.')[1])))
+            // if (decode.exp * 1000 < new Date().getTime()) {
+            //     //logoutAction();
+            //     alert('Time Expired');
+            // }
+            //var encodedString = btoa(string);
+            //var decodedString = atob(encodedString);
+            if(typeof(document.cookie)!="undefined" && decode.exp * 1000 < new Date().getTime()){
+                history.push("/", { url: id });
+            }
+            else if(document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined") window.location.replace("https://"+id+"/"+document.cookie);
             else history.push("/", { url: id });
-
-  
-                        // document.getElementById("myForm").submit();
+            // let redUrl="https://"+id+"/"+document.cookie;
+            // let form = ('<form action="' + redUrl + '" method="POST" id="myForm" >' +
+            //                 '<input type="hidden" name="parameter1" value="'+document.cookie+'" />' +
+            //                 '<input type="hidden" name="parameter2" value="Sample data 2" />' +
+            //              '</form>');
+            //              document.body.innerHTML+=form;
+            //              document.getElementById("myForm").submit();
 
         } catch (err) {
             // Handle Error Here
