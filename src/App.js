@@ -39,7 +39,6 @@ function App({}) {
        localStorage.setItem('token', data.token);
        document.cookie=data.token;
        setJwt(data.token);
-       alert(location.state)
        if(typeof(location.state)!='undefined' && location.state!=null && location.state!=''){
         window.location.replace("https://"+location.state.url+"/"+document.cookie);
        }
