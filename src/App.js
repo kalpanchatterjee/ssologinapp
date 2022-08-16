@@ -21,26 +21,25 @@ axios.interceptors.request.use(
 );
 function App({}) {
   let location=useLocation();
+  
   useEffect(()=>{
-    //alert(document.cookie)
     if(document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined"){
        history.push("/loggedin")
     }
    
   },[])
+
   const history = useHistory();
   const storedJwt = localStorage.getItem('token');
   const [jwt, setJwt] = useState(storedJwt || null);
   const getJwt = async () => {
     if(document.cookie==""||document.cookie==null || typeof(document.cookie)=="undefined"){
       const { data } = await axios.get(`${apiUrl}/jwt`,{ withCredentials: true });
-      //  window.location.replace("http://localhost:3000?token="+data.token);
        localStorage.setItem('token', data.token);
-       //Cookies.set('token',data.token);
        document.cookie=data.token;
-      // Cookies.set('token',data.token);
        setJwt(data.token);
-       if(typeof(location.state.url)!=='undefined' || location.state.url!==null || location.state.url!==''){
+       alert(location.state)
+       if(typeof(location.state)!='undefined' && location.state!=null && location.state!=''){
         window.location.replace("https://"+location.state.url+"/"+document.cookie);
        }
        else history.push("/loggedin")
