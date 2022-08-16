@@ -24,10 +24,13 @@ function Cookie() {
             // }
             //var encodedString = btoa(string);
             //var decodedString = atob(encodedString);
-            if(typeof(document.cookie)!="undefined" && decode.exp * 1000 < new Date().getTime()){
-                history.push("/", { url: id });
-            }
-            else if(document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined") window.location.replace("https://"+id+"/"+document.cookie);
+
+            // if(typeof(document.cookie)!="undefined" && decode.exp * 1000 < new Date().getTime()){
+            //     history.push("/", { url: id });
+            // }
+            // else
+
+            if(document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined") window.location.replace("https://"+id+"/"+document.cookie);
             else history.push("/", { url: id });
             // let redUrl="https://"+id+"/"+document.cookie;
             // let form = ('<form action="' + redUrl + '" method="POST" id="myForm" >' +
