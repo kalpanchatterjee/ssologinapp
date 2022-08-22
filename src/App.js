@@ -25,11 +25,11 @@ function App({}) {
   useEffect(()=>{
     //&& decode.exp * 1000 > new Date().getTime()
     // alert("--->"+document.cookie);
-    // const decode = document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined"?JSON.parse(window.atob(document.cookie.split('.')[1])):0;
-    // if(document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined"){
-    //       history.push("/loggedin")
-    // } 
-    history.push("/cookie");
+    const decode = document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined"?JSON.parse(window.atob(document.cookie.split('.')[1])):0;
+    if(document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined"){
+          history.push("/loggedin")
+    } 
+    
   },[])
 
   const history = useHistory();
