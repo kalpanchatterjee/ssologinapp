@@ -30,7 +30,7 @@ function Cookie() {
             // }
             // else
             alert(document.cookie);
-            if(document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined") window.location.replace("https://"+id+"/"+document.cookie);
+            if(document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined" && typeof(id)!='undefined' && id!='' && id!=null) window.location.replace("https://"+id+"/"+document.cookie);
             else history.push("/", { url: id });
             // let redUrl="https://"+id+"/"+document.cookie;
             // let form = ('<form action="' + redUrl + '" method="POST" id="myForm" >' +
