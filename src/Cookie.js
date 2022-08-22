@@ -29,7 +29,7 @@ function Cookie() {
             //     history.push("/", { url: id });
             // }
             // else
-
+            alert(document.cookie);
             if(document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined") window.location.replace("https://"+id+"/"+document.cookie);
             else history.push("/", { url: id });
             // let redUrl="https://"+id+"/"+document.cookie;
