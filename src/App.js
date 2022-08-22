@@ -24,6 +24,7 @@ function App({}) {
   
   useEffect(()=>{
     //&& decode.exp * 1000 > new Date().getTime()
+    alert("--->"+document.cookie);
     const decode = document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined"?JSON.parse(window.atob(document.cookie.split('.')[1])):0;
     if(document.cookie!="" && document.cookie!=null && typeof(document.cookie)!="undefined"){
           history.push("/loggedin")
@@ -40,6 +41,7 @@ function App({}) {
        document.cookie=data.token;
        setJwt(data.token);
        if(typeof(location.state)!='undefined' && location.state!=null && location.state!=''){
+        history.push("/loggedin")
         window.location.replace("https://"+location.state.url+"/"+document.cookie);
        }
        else history.push("/loggedin")
