@@ -36,16 +36,21 @@ function App({}) {
   const storedJwt = localStorage.getItem('token');
   const [jwt, setJwt] = useState(storedJwt || null);
   const getJwt = async () => {
+    let username=document.getElementById("username").value;
+    let password=document.getElementById("password").value
     if(document.cookie==""||document.cookie==null || typeof(document.cookie)=="undefined"){
-      const { data } = await axios.get(`${apiUrl}/jwt`,{ withCredentials: true });
-       localStorage.setItem('token', data.token);
-       document.cookie=data.token;
-       setJwt(data.token);
-       if(typeof(location.state)!='undefined' && location.state!=null && location.state!=''){
-        history.push("/loggedin")
-        window.location.replace("https://"+location.state.url+"/"+document.cookie);
+       if(username!='' && password!=''){
+          const { data } = await axios.get(`${apiUrl}/jwt`,{ withCredentials: true });
+
+        localStorage.setItem('token', data.token);
+        document.cookie=data.token;
+        setJwt(data.token);
+        if(typeof(location.state)!='undefined' && location.state!=null && location.state!=''){
+          history.push("/loggedin")
+          window.location.replace("https://"+location.state.url+"/"+document.cookie);
+        }
+        else history.push("/loggedin")
        }
-       else history.push("/loggedin")
     }else{
       history.push("/loggedin")
     }
@@ -57,12 +62,12 @@ function App({}) {
       <br></br>
         <div>
           <span>Username</span>&nbsp;&nbsp;
-          <span><input type="text"></input></span>
+          <span><input id="username" type="text"></input></span>
         </div>
         <br></br>
         <div>
           <span>Password</span>&nbsp;&nbsp;
-          <span><input type="text"></input></span>
+          <span><input id="password" type="text"></input></span>
         </div>
         <br></br>
         <div><button onClick={()=>getJwt()}>Login</button></div>
